@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const assetModel = require('./model');
+const assetModel = require('./Models/Asset');
+const routes = require('./routes');
 
 mongoose.Promise = global.Promise;
 
@@ -10,7 +11,7 @@ const connect = async () => {
       .connect('mongodb://admin:p%40ssw0rd@localhost:27017/?authSource=admin', {
         useNewUrlParser: true,
       })
-      .then((response) => get_assets());
+      // .then((response) => get_assets());
     if (connection) {
       console.log('\x1b[32m%s\x1b[0m', 'Database Connected Successfully...');
     }
@@ -36,15 +37,24 @@ const get_assets = () => {
   })
     .then((response) => response.json())
     .then((response) => {
-      response.forEach((asset) => {
-        const asset_model = new assetModel(asset);
-        asset_model.save(function (err, item) {
-          if (err) return console.error(err);
-          console.log(item + ' saved to bookstore collection.');
-        });
-      });
+      console.log(response)
+      const asset_model = new assetModel();
+      asset_model.collection.insertMany(response)
+      .then(response => console.log(response))
+      .catch(err => console.log(err));
+      asset_model.save();
+      // response.forEach((asset) => {
+      //   const asset_model = new assetModel(asset);
+      //   asset_model.save(function (err, item) {
+      //     if (err) return console.error(err);
+      //     // console.log(item + ' saved to bookstore collection.');
+      //   });
+      // });
     });
 };
+
+app.use(routes)
+app.use(express.json());
 app.listen(port, () => {
   // console.log('starting from docker sdfsdf');
   connect();
