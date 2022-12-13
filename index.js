@@ -76,6 +76,9 @@ const get_icons = () => {
 app.use(cors());
 app.use(routes)
 socket.connect(server);
+server.on('connection', socket => {
+  console.log(`user connected:`, socket );
+})
 server.listen(port, () => {
   // console.log('starting from docker sdfsdf');
   connect();

@@ -3,7 +3,7 @@ const asset_model = require('../Models/Asset');
 const historyModel = require('../Models/History');
 const iconModel = require('../Models/Icons')
 const bodyParser = require('body-parser');
-const { socket } = require('../socket').socket;
+const socket = require('../socket').socket;
 const routes = express.Router();
 let jsonParser = bodyParser.json();
 
@@ -37,7 +37,7 @@ routes.route('/history').get((req, res) => {
   const bodyRequest = req.body
   const historObj = new historyModel(bodyRequest)
   historObj.save();
-  socket.io.emit('exchagne', historObj)
+  socket.io.emit('exchange added', historObj)
   res.sendStatus(200)
 });
 module.exports = routes;
