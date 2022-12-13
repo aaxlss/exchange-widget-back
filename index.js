@@ -1,10 +1,13 @@
 const express = require('express');
+const app = express();
+const server = require('http').Server(app);
+
 const mongoose = require('mongoose');
 const assetModel = require('./Models/Asset');
 const iconModel = require('./Models/Icons');
 const routes = require('./routes');
 const cors = require('cors');
-
+const socket = require('./socket');
 mongoose.Promise = global.Promise;
 
 const connect = async () => {
@@ -24,7 +27,7 @@ const connect = async () => {
   }
 };
 
-const app = express();
+
 const port = 3001;
 const api_key = 'C4AACEBD-0DB0-48B4-8532-58D528F691B3';
 const URL = 'https://rest.coinapi.io/';
@@ -72,8 +75,8 @@ const get_icons = () => {
 }
 app.use(cors());
 app.use(routes)
-
-app.listen(port, () => {
+socket.connect(server);
+server.listen(port, () => {
   // console.log('starting from docker sdfsdf');
   connect();
 });
