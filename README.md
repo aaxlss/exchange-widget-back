@@ -7,7 +7,17 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
-In the project directory, you can run:
+## Docker DB
+The backend side works with a DB connection using MongoDB that is running in a docker container.
+
+In order to work with the docker container, you should execute this command:
+```docker
+docker run -d -p 27017:27017 --network bridge --name mongo -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=p@ssw0rd mongo
+```
+
+For more information about docker and how to installed it, follow the next link: [Docker documentations](https://docs.docker.com/get-docker/)
+
+For more information about MongoDB docker image documentation, follow the next link: [MongoDB docker documentation](https://hub.docker.com/_/mongo)
 
 ### `npm start`
 
