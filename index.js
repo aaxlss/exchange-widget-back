@@ -8,7 +8,7 @@ const iconModel = require('./Models/Icons');
 const routes = require('./routes');
 const cors = require('cors');
 const socket = require('./socket');
-const RECALL_API = 205//min
+const RECALL_API =205//min
 
 mongoose.Promise = global.Promise;
 
@@ -36,7 +36,7 @@ const connect = async () => {
 };
 
 const port = 3001;
-const api_key = 'C4AACEBD-0DB0-48B4-8532-58D528F691B3';
+const api_key = 'CECE5A31-EE36-4DA4-A09E-71AF117B9785';
 const URL = 'https://rest.coinapi.io/';
 
 const assets = 'v1/assets/';
@@ -78,6 +78,7 @@ const get_icons = () => {
   })
     .then((response) => response.json())
     .then((response) => {
+      console.log('icon 1', response)
       response.forEach((icon) => {
         const icon_model = new iconModel(icon);
         iconModel
@@ -99,6 +100,7 @@ const get_icons = () => {
   })
     .then((response) => response.json())
     .then((response) => {
+      console.log('icon 2 ', response)
       response.forEach((icon) => {
         const icon_model = new iconModel(icon);
         iconModel
