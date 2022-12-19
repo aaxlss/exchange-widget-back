@@ -2,6 +2,9 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
+/**
+ * Crearting Schema for History structure.
+ */
 const historySchema = new Schema({
 
   date_time: Date,
@@ -14,5 +17,5 @@ const historySchema = new Schema({
   type: String,
 });
 
-const history_model = mongoose.model('History', historySchema);
+const history_model = mongoose.model('History', historySchema); //Creating model for History Document
 module.exports = history_model;

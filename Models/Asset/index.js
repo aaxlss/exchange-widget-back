@@ -3,6 +3,9 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
+/**
+ * Crearting Schema for asset structure.
+ */
 const assetSquema = new Schema({
   asset_id: String,
   name: String,
@@ -24,5 +27,6 @@ const assetSquema = new Schema({
 }
 );
 
-const asset_model = mongoose.model('Assets', assetSquema);
+
+const asset_model = mongoose.model('Assets', assetSquema);//Creating model for Assets Document
 module.exports = asset_model;
